@@ -5,7 +5,7 @@
 FROM ubuntu:18.04
 
 #Forked from kaiwinter/docker-java8-maven(https://github.com/kaiwinter/docker-java8-maven)
-MAINTAINER Alexander Krahl (https://github.com/IRelaxxx)
+LABEL maintainer="Alexander Krahl (https://github.com/IRelaxxx)"
 
 # this is a non-interactive automated build - avoid some warning messages
 ENV DEBIAN_FRONTEND noninteractive
@@ -40,10 +40,7 @@ RUN apt-get clean
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
-# configure symbolic links for the java and javac executables
-#RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
-
-#Install other stuff libglib2.0-dev
+#Install other stuff
 RUN apt-get install -y xvfb libgtk2.0-bin libxtst6 libxslt1.1
 RUN apt-get clean
 
