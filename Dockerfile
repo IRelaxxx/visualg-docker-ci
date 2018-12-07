@@ -1,5 +1,5 @@
 # Ubuntu 18.04
-# newest OpenJDK and OpenJFX
+# OpenJDK8:8u191-b12-0ubuntu0.18.04.1 and OpenJFX:8u161-b12-1ubuntu2
 # Maven 3.3.9
 
 FROM ubuntu:18.04
@@ -33,14 +33,14 @@ ENV MAVEN_HOME /opt/maven
 RUN apt-get clean
 
 # set shell variables for java installation
-RUN apt-get install -y openjfx openjdk-8-jdk
+RUN apt-get install -y openjfx=8u161-b12-1ubuntu2 openjdk-8-jdk=8u191-b12-0ubuntu0.18.04.1
 RUN apt-get clean
 
-# unpack java
+# Setup java
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
-#Install other stuff
+#Install Xvfbv and JavaFX Dependencies
 RUN apt-get install -y xvfb libgtk2.0-bin libxtst6 libxslt1.1
 RUN apt-get clean
 
