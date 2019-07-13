@@ -1,5 +1,5 @@
 # Ubuntu 18.04
-# OpenJDK8:8u191-b12-0ubuntu0.18.04.1 and OpenJFX:8u161-b12-1ubuntu2
+# OpenJDK11 and OpenJFX11
 # Maven 3.3.9
 
 FROM ubuntu:18.04
@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update 
 
 # install wget
-RUN apt-get install -y wget
+RUN apt-get install -y wget && apt-get clean
 
 # get maven 3.3.9
 RUN wget --no-verbose -O /tmp/apache-maven-3.3.9.tar.gz http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
@@ -29,19 +29,14 @@ RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
 ENV MAVEN_HOME /opt/maven
 
-# remove download archive files
-RUN apt-get clean
-
 # set shell variables for java installation
-RUN apt-get install -y openjfx=8u161-b12-1ubuntu2 openjdk-8-jdk=8u191-b12-0ubuntu0.18.04.1
-RUN apt-get clean
+RUN apt-get install -y openjfx=11.0.2+1-1~18.04.2 openjdk-11-jdk && apt-get clean
 
 # Setup java
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
 
 #Install Xvfbv and JavaFX Dependencies
-RUN apt-get install -y xvfb libgtk2.0-bin libxtst6 libxslt1.1
-RUN apt-get clean
+RUN apt-get install -y xvfb libgtk2.0-bin libxtst6 libxslt1.1 && apt-get clean 
 
 CMD [""]
