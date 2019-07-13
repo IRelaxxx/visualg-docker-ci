@@ -1,5 +1,5 @@
 # Ubuntu 18.04
-# OpenJDK11 and OpenJFX11
+# OpenJDK11 and Maven
 # Maven 3.3.9
 
 FROM ubuntu:18.04
@@ -30,7 +30,7 @@ RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
 ENV MAVEN_HOME /opt/maven
 
 # set shell variables for java installation
-RUN apt-get install -y openjfx=11.0.2+1-1~18.04.2 openjdk-11-jdk=11.0.3+7-1ubuntu2~18.04.1 && apt-get clean
+RUN apt-get install -y openjdk-11-jdk=11.0.3+7-1ubuntu2~18.04.1 && apt-get clean
 
 # Setup java
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
